@@ -87,17 +87,17 @@ mode <- function(x) {
 
 mode_price <- mode(data_with_prices$price)
 
-# Fill in the missing values if using one of the values from above
+# Fill in the missing values if using one of the values from above, in this case, the rounded mean
 
 fill_na_sample_data <- data.frame(data)
 
-fill_na_sample_data[c("price")][is.na(data[c("price")])] <- mean
+fill_na_sample_data[c("price")][is.na(data[c("price")])] <- 152.72
 
 # Impute the missing value using basic linear regression
 
 sample_prices <- sample_n(data_with_prices, 500)
 
-model <- lm(price ~ neighbourhood + 
+model <- lm(price ~ neighbourhood_group + 
               room_type, data = sample_prices)
 summary(model)
 
